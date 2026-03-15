@@ -1,39 +1,24 @@
-<!-- 01_php-intro/index.php -->
-<!--
-    Diciplina   : Desenvolvimento Web II (DWII)
-    Aula        : 03 - Arquitetura Web e Introdução ao PHP
-    Autor       : Marcos Vinicius Valério Ferreira
-    Data        : 02/03/2026
-    Repositorio : https://github.com/Marcosvvf-ifpr/2026-DWII
--->
 <?php
-// Variáveis PHP - serão usadas no HTML abaixo
-$nome = "Marcos";
-$profissao = "Estudante de Tecnologia";
-$curso = "Técnico em Informatica - IFPR";
-$ano = "2026";
+/**
+ * =============================================================
+ * Arquivo   : nav.php | includes/nav.php
+ * Diciplina : Desenvolvimento Web II (2026-DWII)
+ * Aula      : 04 - PHP para Web: Formularios, Get e Post
+ * Autor     : Marcos Vinicius Valério Ferreira
+ *  =============================================================
+ */
+
+$nome = "Marcos Vinicius Valério Ferreira";
+$pagina_atual = "inicio"; //valor para destacar item do menu
+$caminho_raiz = "../"; //valor para links funcionarem de qualquer pasta
+$titulo_pagina = "Portifólio - ($nome)"; //texto da aba do navegador
 ?>
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portifolio - <?php echo $nome; ?></title>
-    <link rel="stylesheet" href="style.css">
+    <?php include '../includes/cabecalho.php'; ?>
 </head>
 <body>
-    <!--includes/cabecalho.php -->
-    <?php include 'includes/cabecalho.php'; ?>
-    <div class="hero">
-        <h1><?php echo $nome; ?></h1>
-        <p><?php echo $profissao; ?> | <?php echo $curso; ?></p>
-    </div>
-    <div class="conteiner">
-        <h2>Bem-vindo ao meu portifólio</h2>
-        <p>Está página foi gerada pelo php em:
-            <strong><?php echo date("d/m/y \à\s H:i:s"); ?></strong></p>
-    </div>
-    <!-- includes/rodape.php -->
-    <?php include 'includes/rodape.php'; ?>
+    <?php include '../includes/rodape.php'; ?>
 </body>
 </html>
