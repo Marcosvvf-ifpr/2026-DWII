@@ -59,6 +59,7 @@ $aulas = [
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="includes/style.css">
     <title><?php echo htmlspecialchars($subtitulo); ?></title>
     <!--
         index.php está na RAIZ (2026-DWII/).
