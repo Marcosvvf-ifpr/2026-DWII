@@ -2,7 +2,6 @@
 $caminho_raiz = '../';
 require_once '03_pdo/includes/conexao.php';
 
-// Validação do ID
 $id = filter_input(INPUT_GET, 'id', FILTER_VALIDATE_INT);
 
 if (!$id){
@@ -10,9 +9,7 @@ if (!$id){
     exit;
 }
 
-// Correção: Adicionado $ e ; no final
 $stmt = $pdo->prepare('SELECT * FROM tecnologias WHERE id = :id'); 
-// Correção: Aspas na chave 'id'
 $stmt->execute(['id' => $id]);
 $tec = $stmt->fetch();
 
