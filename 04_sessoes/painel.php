@@ -42,9 +42,9 @@ $pagina_atual = '';
             <p>
                 Este conteudo só é visível para usuários autenticados.
             </p>
-            <p>
-                Na Proxima aula este painel terá funcionalidades reais(CRUD).
-            </p>
+            <a href="../05_crud/index.php" class="btn-primario">
+                📂 Gerenciar Projetos
+            </a>
         </div>
         <p style="margin-top: 24px; text-align: center;">
             <a href="logout.php" style="background: #cf1c21; color: white; padding:10px 24px; border-radius: 6px; text-decoration: none; font-weight: bold;">
