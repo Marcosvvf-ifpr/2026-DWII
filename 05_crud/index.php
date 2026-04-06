@@ -1,11 +1,13 @@
 <?php
 /**
  * Diciplina : Desenvolvimento Web II (DWII)
- * Aula      : 07 - CRUD: Create e Read
+ * Aula      : 07 - CRUD: Completo
  * Arquivo   : 05_crud/index.php
  * Autor     : Marcos Vinicius Valério Ferreira
  * Data      : 30/03/2026
- * Descrição : Lista todos os projetos cadastrados no banco(Read)
+ * Descrição : Ponto dde entrada do modulo CRUD.
+ *             Lista todos os projetos cadastrados(Read) e
+ *             exibe mensagens de feedback ápos cada operação.
  */
 
 require_once __DIR__ . '../04_sessoes/includes/auth.php';
@@ -17,6 +19,10 @@ $stmt = $pdo->query('SELECT * FROM projetos ORDER BY criado_em DESC');
 $projetos = $stmt->fetchAll();
 
 $cadastroOk = isset($_GET['cadastro']) && $_GET['cadastro'] === 'ok';
+$editadoOK = isset($_GET['editado']) && $_GET['editado'] === 'ok';
+$excluidoOK = isset($_GET['excluido']) && $_GET['excluido'] === 'ok';
+
+$erroMsg = isset($_GET['erro']) ? $_GET['erro'] : null;
 
 $titulo_pagina = 'Meus Projetos - Portfólio';
 $caminho_raiz = '../';
@@ -36,6 +42,25 @@ $pagina_atual = '';
         <?php if ($cadastroOk): ?>
             <div class="alerta-sucesso">
                 <p style="margin: 0;">✅ Projeto cadastrado com sucesso!</p>
+            </div>
+        <?php endif; ?>
+        <?php if ($editadoOK): ?>
+            <div class="alerta-sucesso">
+                <p style="margin: 0;">✅ Projeto editado com sucesso!</p>
+            </div>
+        <?php endif; ?>
+        <?php if ($excluidoOK): ?>
+            <div class="alerta-sucesso">
+                <p style="margin: 0;">🗑️ Projeto excluído com sucesso!</p>
+            </div>
+        <?php endif; ?>
+        <?php if ($erroMsg === 'nao_encontrado'): ?>
+            <div class="alerta-erro">
+                <p style="margin: 0;">⚠️ Projeto não encontrado. Ele pode ter sido excluído.</p>
+            </div>
+        <?php elseif($erroMsg === 'id_invalido'): ?>
+            <div class="alerta-erro">
+                <p style="margin: 0;">⚠️ Requisição inválida.</p>
             </div>
         <?php endif; ?>
         <?php if (empty($projetos)): ?>
@@ -66,6 +91,10 @@ $pagina_atual = '';
                         <?php if ($projeto['link_github']): ?>
                             <a href="<?php echo htmlspecialchars($projeto['link_github']); ?>" target="_blank" rel="noopener noreferrer" class="btn-secundario">                            🔗Ver no GitHub</a>
                         <?php endif; ?>
+                        <div style="margin-top: 12px; display: flex; gap: 8px; flex-wrap: wrap;">
+                            <a href="editar.php?id=<?php echo $projeto['id']; ?>" class="btn-secundario">✏️ Editar</a>
+                            <a href="excluir.php?id=<?php echo (int) $projeto['id']; ?>" class="btn-perigo" onclick="return confirm('Tem certeza que deseja excluir este projeto?');">🗑️ Excluir</a>
+                        </div>
                     </div>
                 <?php endforeach; ?>
             </div>
